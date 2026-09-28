@@ -1,0 +1,58 @@
+[package]
+name = "VoiceFlow"
+version = "0.2.1"
+description = "语流桌面语音输入工具"
+authors = ["VoiceFlow"]
+license = "MIT"
+edition = "2021"
+
+[lib]
+name = "VoiceFlow_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-autostart = "2"
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-single-instance = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "fs", "sync"] }
+tokio-tungstenite = { version = "0.28", features = ["rustls-tls-webpki-roots"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "multipart", "stream", "rustls-tls"] }
+futures-util = "0.3"
+base64 = "0.22"
+hmac = "0.12"
+httpdate = "1"
+rusqlite = { version = "0.32", features = ["bundled"] }
+keyring = { version = "3", features = ["windows-native"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+cpal = "0.15"
+hound = "3"
+parking_lot = "0.12"
+thiserror = "2"
+url = "2"
+enigo = "0.6"
+arboard = { version = "3", default-features = false }
+bzip2 = "0.6"
+libloading = "0.8"
+sha2 = "0.10"
+sha1 = "0.10"
+tar = "0.4"
+rfd = "0.15"
+
+[dev-dependencies]
+tempfile = "3"
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.61", features = [
+  "Win32_Foundation",
+  "Win32_UI_WindowsAndMessaging",
+  "Win32_UI_Input_KeyboardAndMouse",
+  "Win32_System_Threading"
+] }
